@@ -1,0 +1,24 @@
+
+.card-container {
+    @include center;
+    @include blur;
+
+    padding: 10px;
+    border-radius: 6px;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+
+.card-container {
+    @include NOmobile {
+        max-width: 500px;
+        min-width: 400px;
+    }
+
+    @include mobile {
+        width: 90%;
+    }
+}

@@ -1,0 +1,17 @@
+.card-container button {
+    border-radius: 24px;
+    font-size: $large-font;
+    height: 35px;
+    width: 100%;
+
+    @include shadow;
+    justify-content: center;
+    letter-spacing: 0.35px;
+
+    @include button;
+}
+
+.selected { 
+    background: $buttonBG-hover !important;
+    color: $buttonFG-hover !important;
+}

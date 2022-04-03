@@ -1,0 +1,17 @@
+.form-element{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.form-element-option{
+    
+    border: 1px solid black;
+    align-self: flex-end;
+
+    @include button;
+}
+
+.form-element-title{
+    width: 100%;
+}

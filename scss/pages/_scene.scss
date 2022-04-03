@@ -1,0 +1,44 @@
+.title {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    padding: 10px;
+    & > button {
+        padding: 10px;
+    }
+    @include tablet {
+        width: 100%;
+        left: 0%;
+    }
+}
+
+.options {
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    width: 80%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    @include mobile {
+        flex-direction: column;
+    }
+}
+
+.option {
+    @include button;
+    padding: 10px;
+    border: 2px solid black;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.6s linear, background-color 0.5s linear;
+}
+
+.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.disabled {
+    @include buttonDisabled;
+}

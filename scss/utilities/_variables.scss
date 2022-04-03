@@ -1,0 +1,25 @@
+$color0: #fffcf2;
+$color1: #132a13;
+$color2: #31572c;
+$color3: #4f772d;
+$color4: #90a955;
+$color5: #ecf39e;
+$color6: #252422;
+
+$buttonBG: $color0;
+$buttonBG-hover: $color6;
+
+$buttonFG: $buttonBG-hover;
+$buttonFG-hover: $buttonBG;
+
+$smaller-font: 10px;
+$small-font: 12px;
+$medium-font: 14px;
+$large-font: 18px;
+$larger-font: 22px;
+
+$mobile: 400px;
+$tablet: 900px;
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&display=swap');
+$font-content: 'Fira Code', sans-serif;

@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-content;
+}
+
+html, body { width:100%; height:100%; } /* just to be sure these are full screen*/
+
+canvas { display:block; width: 100%; height: 100%;} /* To remove the scrollbars */
+
+button{
+    cursor: pointer;
+    border-style: none;
+}
+
+.center{
+    @include center;
+}
+
+.spaced, .spaced > *{
+    margin: 10px;
+    padding: 5px;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+#app > div {
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,65 @@
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+@mixin NOmobile {
+    @media (min-width: $mobile) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+@mixin xcenter($width) {
+    margin: 0 auto;
+    width: $width;
+}
+
+@mixin blur {
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(16px);
+}
+
+@mixin shadow {
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-sizing: border-box;
+}
+
+@mixin button {
+    transition: 0.4s;
+    cursor: pointer;
+
+    background-color: $buttonBG;
+    color: $buttonFG;
+
+    &:hover {
+        background: $buttonBG-hover;
+        color: $buttonFG-hover;
+    }
+}
+
+@mixin buttonDisabled {
+    cursor: default;
+
+    background-color: $buttonBG;
+    color: $buttonFG;
+
+    &:hover {
+        background: $buttonBG;
+        color: $buttonFG;
+    }
+}
