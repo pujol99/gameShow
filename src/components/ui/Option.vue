@@ -1,22 +1,20 @@
 <template>
-    <div v-if="message">
-        <button
-            @click="onClick"
-            class="option"
-            :class="{
-                active: !sceneLoading,
-                disabled: disabled,
-            }"
-        >
-            {{ message }}
-        </button>
-    </div>
+    <button
+        v-if="message"
+        class="option hided"
+        :class="{
+            active: !sceneLoading,
+            disabled: disabled,
+        }"
+        @click="onClick"
+    >
+        {{ message }}
+    </button>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
-    name: "Option",
     props: {
         index: Number,
         message: String,
@@ -29,13 +27,8 @@ export default {
         ...mapGetters({ sceneLoading: "stages/isSceneLoading" }),
     },
     methods: {
-        ...mapActions({ nextStage: "stages/nextStage" }),
         onClick() {
-            // if button is active
-            if (!this.disabled) {
-                this.$store.commit("data/saveSceneDecision", this.index);
-                this.nextStage();
-            }
+            if (!this.disabled) this.$store.commit("data/saveSceneDecision", this.index);
         },
     },
 };

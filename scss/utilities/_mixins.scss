@@ -1,21 +1,3 @@
-@mixin mobile {
-    @media (max-width: $mobile) {
-        @content;
-    }
-}
-
-@mixin NOmobile {
-    @media (min-width: $mobile) {
-        @content;
-    }
-}
-
-@mixin tablet {
-    @media (max-width: $tablet) {
-        @content;
-    }
-}
-
 @mixin center {
     position: absolute;
     left: 50%;
@@ -23,15 +5,34 @@
     transform: translate(-50%, -50%);
 }
 
+@mixin centerParent {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 
-@mixin xcenter($width) {
+@mixin icon {
+    background-color: aliceblue !important;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@mixin xcenter {
     margin: 0 auto;
-    width: $width;
+    width: 100%;
+}
+
+@mixin easyInOut($time){
+    animation-duration: $time;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 @mixin blur {
-    background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(16px);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(32px);
 }
 
 @mixin shadow {
@@ -39,27 +40,6 @@
     box-sizing: border-box;
 }
 
-@mixin button {
-    transition: 0.4s;
-    cursor: pointer;
-
-    background-color: $buttonBG;
-    color: $buttonFG;
-
-    &:hover {
-        background: $buttonBG-hover;
-        color: $buttonFG-hover;
-    }
-}
-
-@mixin buttonDisabled {
-    cursor: default;
-
-    background-color: $buttonBG;
-    color: $buttonFG;
-
-    &:hover {
-        background: $buttonBG;
-        color: $buttonFG;
-    }
-}
+@mixin error { background-color: $error !important;} .error{ @include error }
+@mixin warning { background-color: $warning !important;} .warning{ @include warning }
+@mixin ok { background-color: $ok !important;} .ok{ @include ok }

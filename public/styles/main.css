@@ -1,15 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Source+Serif+4:wght@800&display=swap");
+.error {
+  background-color: #cc3300 !important;
+}
+
+.warning {
+  background-color: #ffcc00 !important;
+}
+
+.ok {
+  background-color: #339900 !important;
+}
+
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: "Fira Code", sans-serif;
 }
 
 html, body {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 /* just to be sure these are full screen*/
@@ -25,91 +38,222 @@ button {
   border-style: none;
 }
 
-.center {
+#app {
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/images/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.continueButton {
+  font-size: 18px;
+  width: 100%;
+  padding: 8px 0px;
+  letter-spacing: 0.4px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px, rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+          box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px, rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: "Fira Code", sans-serif;
+  background-color: #fffcf2;
+  color: #252422;
+}
+
+@media (hover: hover) {
+  .continueButton:hover {
+    background: #252422;
+    color: #fffcf2;
+  }
+}
+
+.selected {
+  background: #252422 !important;
+  color: #fffcf2 !important;
+}
+
+.card-container {
   position: absolute;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(32px);
+          backdrop-filter: blur(32px);
+  padding: 10px;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  gap: 15px;
+  max-width: 600px;
+  width: 90%;
+  font-family: "Fira Code", sans-serif;
+  color: white;
 }
 
-.spaced, .spaced > * {
-  margin: 10px;
-  padding: 5px;
+@media screen and (max-width: 480px) {
+  .card-container {
+    width: 99%;
+  }
 }
 
-#app {
+.card-title {
+  font-family: "Source Serif 4", sans-serif;
+}
+
+.scene-ui {
+  font-family: "Fira Code", sans-serif;
+}
+
+.description {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-family: "Source Serif 4", sans-serif;
   width: 100%;
-  height: 100%;
-  background-color: black;
-}
-
-#app > div {
-  width: 100%;
-  height: 100%;
+  text-align: center;
+  padding: 20px;
+  background-color: azure;
 }
 
 .title {
   position: absolute;
-  top: 10%;
-  left: 10%;
-  padding: 10px;
+  width: 100%;
+  top: 5%;
 }
 
-.title > button {
-  padding: 10px;
-}
-
-@media (max-width: 900px) {
+@media screen and (max-width: 800px) {
   .title {
-    width: 100%;
-    left: 0%;
+    top: 0;
   }
 }
 
-.options {
-  position: absolute;
-  top: 80%;
-  left: 10%;
-  width: 80%;
-  padding: 10px;
+.title button {
+  max-width: 600px;
+  margin: 0 auto;
+  display: block;
+}
+
+.icons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 30px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-@media (max-width: 400px) {
+.icons > div {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 0px;
+          flex: 0 1 0px;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+
+.icon {
+  background-color: aliceblue !important;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.info {
+  color: black;
+  background-color: azure;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.options {
+  display: none;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
   .options {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    gap: 0px;
+    bottom: 0;
   }
 }
 
+.expanded {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+
 .option {
+  margin: 0 auto;
+  width: 100%;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   cursor: pointer;
+  border-radius: 5px;
+  font-family: "Fira Code", sans-serif;
   background-color: #fffcf2;
   color: #252422;
+  font-family: "Fira Code", sans-serif;
   padding: 10px;
-  border: 2px solid black;
+}
+
+@media (hover: hover) {
+  .option:hover {
+    background: #252422;
+    color: #fffcf2;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .option {
+    padding: 15px 10px;
+  }
+}
+
+.hided {
   visibility: hidden;
   opacity: 0;
   -webkit-transition: visibility 0s, opacity 0.6s linear, background-color 0.5s linear;
   transition: visibility 0s, opacity 0.6s linear, background-color 0.5s linear;
 }
 
-.option:hover {
-  background: #252422;
-  color: #fffcf2;
-}
-
-.active {
+.active,
+.active > * {
   visibility: visible;
   opacity: 1;
 }
@@ -125,166 +269,22 @@ button {
   color: #252422;
 }
 
-.card-container button {
-  border-radius: 24px;
-  font-size: 18px;
-  height: 35px;
-  width: 100%;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px, rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
-          box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px, rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  letter-spacing: 0.35px;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  cursor: pointer;
-  background-color: #fffcf2;
-  color: #252422;
+.reportMood {
+  margin: 0 auto;
+  min-width: 100px;
+  min-height: 10px;
+  display: inline-block;
 }
 
-.card-container button:hover {
-  background: #252422;
-  color: #fffcf2;
+#mood {
+  position: relative;
 }
 
-.selected {
-  background: #252422 !important;
-  color: #fffcf2 !important;
-}
-
-.card-container {
+#emotion {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.4);
-  -webkit-backdrop-filter: blur(16px);
-          backdrop-filter: blur(16px);
-  padding: 10px;
-  border-radius: 6px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  text-align: center;
-  gap: 20px;
-}
-
-@media (min-width: 400px) {
-  .card-container {
-    max-width: 500px;
-    min-width: 400px;
-  }
-}
-
-@media (max-width: 400px) {
-  .card-container {
-    width: 90%;
-  }
-}
-
-.form-element {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.form-element-option {
-  border: 1px solid black;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  cursor: pointer;
-  background-color: #fffcf2;
-  color: #252422;
-}
-
-.form-element-option:hover {
-  background: #252422;
-  color: #fffcf2;
-}
-
-.form-element-title {
-  width: 100%;
-}
-
-.popup {
-  position: absolute;
-  -webkit-animation-duration: 0.4s;
-          animation-duration: 0.4s;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  width: 100%;
-  top: -80px;
-  z-index: 1;
-}
-
-.popupActive {
-  -webkit-animation-name: fade-in;
-          animation-name: fade-in;
-}
-
-.popupInactive {
-  -webkit-animation-name: fade-out;
-          animation-name: fade-out;
-}
-
-.popup-content {
-  background-color: #ffcc00;
-  padding: 20px;
-  margin: 10px;
-  font-size: 20px;
-}
-
-@-webkit-keyframes fade-in {
-  from {
-    top: -80px;
-  }
-  to {
-    top: 0px;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    top: -80px;
-  }
-  to {
-    top: 0px;
-  }
-}
-
-@-webkit-keyframes fade-out {
-  from {
-    top: 0px;
-  }
-  to {
-    top: -80px;
-  }
-}
-
-@keyframes fade-out {
-  from {
-    top: 0px;
-  }
-  to {
-    top: -80px;
-  }
+  top: -20px;
+  right: -20px;
+  font-size: 26px;
+  -webkit-transform: rotate(30deg);
+          transform: rotate(30deg);
 }

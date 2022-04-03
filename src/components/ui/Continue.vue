@@ -1,10 +1,18 @@
 <template>
-    <button @click="nextStage()">{{ getLabel("continue") }}</button>
+    <button class="continueButton" @click="!this.disabled && nextStage()">
+        {{ getLabel("continue") }}
+    </button>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
+    props: {
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+    },
     computed: {
         ...mapGetters({ getLabel: "data/getLabel" }),
     },

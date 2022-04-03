@@ -5,13 +5,10 @@
                 <h1>{{ getLabel("welcome_title") }}</h1>
             </div>
             <div class="card-body">
-                <p>{{ getLabel("welcome_description") }}</p>
+                <p>{{ getLabel("welcome_body") }}</p>
             </div>
             <div class="card-action">
                 <Continue />
-            </div>
-            <div id="flag-space">
-                <Flag/>
             </div>
         </div>
     </div>
@@ -19,13 +16,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Continue from "../components/ui/Continue.vue";
-import Flag from "../components/ui/SelectFlag";
 export default {
-    components: {
-        Continue,
-        Flag,
-    },
     computed: {
         ...mapGetters({
             currentScene: "stages/isCurrentStage",

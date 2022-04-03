@@ -7,7 +7,7 @@
 
 <script>
 import About from "../src/views/About.vue";
-import Scenes from "../src/views/Scenes.vue";
+import Scenes from "../src/views/Scene.vue";
 import Survey from "../src/views/Survey.vue";
 import Final from "../src/views/Final.vue";
 

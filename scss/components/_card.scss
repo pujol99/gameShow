@@ -1,24 +1,25 @@
-
 .card-container {
     @include center;
     @include blur;
-
+    
     padding: 10px;
-    border-radius: 6px;
-
+    border-radius: 5px;
+    
     display: flex;
     flex-direction: column;
     text-align: center;
-    gap: 20px;
+    gap: 15px;
+
+    max-width: 600px;
+    width: 90%;
+    @include phone{
+        width: 99%;
+    }
+
+    font-family: $font-content;
+    color: white;
 }
 
-.card-container {
-    @include NOmobile {
-        max-width: 500px;
-        min-width: 400px;
-    }
-
-    @include mobile {
-        width: 90%;
-    }
+.card-title{
+    font-family: $font-header;
 }
