@@ -46,14 +46,10 @@ export default {
         const bakedMaterial = new MeshBasicMaterial({ map: bakedTexture });
         bakedTexture.encoding = sRGBEncoding;
         const lightMaterial = new MeshBasicMaterial({ color: 0xffffff });
-        this.screenMaterial = this.getScreenMaterial(screenTexture, 200.0);
-        this.monitorMaterial = this.getScreenMaterial(monitorTexture, 1000.0);
 
         gltfLoader.load(`./assets/scenes/${this.sceneConfig.name}/scene.glb`, gltf => {
             this.setAllMaterial(gltf, bakedMaterial);
             this.setMaterialIncludes(gltf, "Light", lightMaterial);
-            this.setMaterial(gltf, "Monitor", this.monitorMaterial);
-            this.setMaterial(gltf, "Screen", this.screenMaterial);
 
             this.addScene(gltf.scene);
             this.isLoaded = true;
@@ -68,8 +64,8 @@ export default {
 
                 // Update uniforms
                 const elapsedTime = this.clock.getElapsedTime();
-                this.screenMaterial.uniforms.uTime.value = elapsedTime;
-                this.monitorMaterial.uniforms.uTime.value = elapsedTime;
+                // this.screenMaterial.uniforms.uTime.value = elapsedTime;
+                // this.monitorMaterial.uniforms.uTime.value = elapsedTime;
             }
         },
         setMaterialIncludes(gltf, type, material) {

@@ -1,14 +1,16 @@
 <template>
     <Welcome />
+    <Game />
 </template>
 
 <script>
 import Welcome from "./views/Welcome.vue";
+import Game from "./views/Game.vue";
 
 export default {
-    name: "Game",
     components: {
-        Welcome
+        Welcome,
+        Game
     },
 };
 </script>

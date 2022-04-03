@@ -1,7 +1,10 @@
 const state = () => ({
-    stages: ["Welcome"],
+    stages: ["Welcome", "Game"],
     currentStageIndex: 0,
     sceneLoading: false,
+    scene: null,
+    renderer: null,
+    gltfScene: null,
 });
 
 // getters
@@ -9,39 +12,47 @@ const getters = {
     isCurrentStage: state => name => {
         return state.stages[state.currentStageIndex] == name;
     },
-    isSceneLoading: state => {
-        return state.sceneLoading;
-    },
     isLastStage: state => {
         return state.currentStageIndex == state.stages.length - 1;
+    },
+    getGLTF: state => {
+        return state.gltfScene;
+    },
+    getRenderer: state => {
+        return state.renderer;
     },
 };
 
 // actions
 const actions = {
     nextStage({ commit, getters }) {
-        commit("nextStage");
-        if (getters.isLastStage) commit("saveData");
+        if (!getters.isLastStage) commit("nextStage");
+    },
+    addGLTFScene({ commit }, scene) {
+        commit("addToScene", scene);
+        commit("setGLTFScene", scene);
+    },
+    loadingFinish({ commit }) {
+        commit("loadingEnd");
     },
 };
 
 // mutations
 const mutations = {
     nextStage(state) {
-        if (state.currentStageIndex + 1 < state.stages.length) {
-            state.currentStageIndex++;
-
-            // If next scene is of Scene type
-            if (state.stages[state.currentStageIndex].includes("Scene")) {
-                state.sceneLoading = !state.sceneLoading;
-            }
-        }
+        state.currentStageIndex++;
     },
-    loadingSwitch(state) {
-        state.sceneLoading = !state.sceneLoading;
+    setScene(state, scene) {
+        state.scene = scene;
     },
-    saveData(state) {
-        this.dispatch("data/saveData", { root: true });
+    setRenderer(state, renderer) {
+        state.renderer = renderer;
+    },
+    setGLTFScene(state, gltf) {
+        state.gltfScene = gltf;
+    },
+    addToScene(state, object) {
+        state.scene.add(object);
     },
 };
 
