@@ -60,10 +60,10 @@ export default {
         ...mapActions({ addScene: "stages/addGLTFScene" }),
         update() {
             if (this.isLoaded) {
-                this.sceneConfig.update(this.gltf);
+                // this.sceneConfig.update(this.gltf);
 
-                // Update uniforms
-                const elapsedTime = this.clock.getElapsedTime();
+                // // Update uniforms
+                // const elapsedTime = this.clock.getElapsedTime();
                 // this.screenMaterial.uniforms.uTime.value = elapsedTime;
                 // this.monitorMaterial.uniforms.uTime.value = elapsedTime;
             }

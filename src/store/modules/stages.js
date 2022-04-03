@@ -1,7 +1,13 @@
 const state = () => ({
-    stages: ["Welcome", "Game"],
+    stages: ["Game"],
+    roundTitles: ["Prueba de velocidad"],
     currentStageIndex: 0,
-    sceneLoading: false,
+    roundIndex: 0,
+    //
+    rulesReaded: true,
+    roundStarted: false,
+    roundPresented: false,
+    //
     scene: null,
     renderer: null,
     gltfScene: null,
@@ -15,11 +21,17 @@ const getters = {
     isLastStage: state => {
         return state.currentStageIndex == state.stages.length - 1;
     },
+    rulesReaded: state => {
+        return state.rulesReaded;
+    },
     getGLTF: state => {
         return state.gltfScene;
     },
     getRenderer: state => {
         return state.renderer;
+    },
+    getRoundTitle: state => {
+        return state.roundTitles[state.roundIndex];
     },
 };
 
@@ -35,6 +47,9 @@ const actions = {
     loadingFinish({ commit }) {
         commit("loadingEnd");
     },
+    setRulesReaded({ commit }) {
+        commit("setRulesReaded");
+    },
 };
 
 // mutations
@@ -47,6 +62,9 @@ const mutations = {
     },
     setRenderer(state, renderer) {
         state.renderer = renderer;
+    },
+    setRulesReaded(state) {
+        state.rulesReaded = true;
     },
     setGLTFScene(state, gltf) {
         state.gltfScene = gltf;

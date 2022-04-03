@@ -1,121 +1,13 @@
-.scene-ui {
-    font-family: $font-content;
-}
-
-.description {
-    @include center;
-
-    font-family: $font-header;
-    width: 100%;
-    text-align: center;
-    padding: 20px;
-    background-color: azure;
-}
-
-.title {
-    position: absolute;
-    width: 100%;
-    top: 5%;
-    @include tablet { top: 0; }
-    button{
-        max-width: 600px;
-        margin: 0 auto;
-        display: block;
-    }
-}
-
-.icons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 30px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.icons > div {
-    flex: 0 1 0px;
-    min-width: fit-content;
-}
-
-.icon {
-    @include icon;
-}
-
-.info {
-    color: black;
-    background-color: azure;
-    height: fit-content;
-    padding: 4px 8px;
-    border-radius: 3px;
-}
-
-.footer {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-}
-
-.options {
-    display: none;
-    max-width: 1000px;
-    margin: 0 auto;
-
-    @include tablet {
-        flex-direction: column;
-        gap: 0px;
-        bottom: 0;
-    }
-}
-
-.expanded {
-    display: flex;
-    gap: 10px;
-}
-
-.option {
-    @include xcenter;
-    @include button;
-
-    font-family: $font-content;
+.round-title{
+    background-color: orange;
+    color: aliceblue;
     padding: 10px;
-    @include phone {
-        padding: 15px 10px;
-    }
-}
-
-.hided {
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.6s linear, background-color 0.5s linear;
-}
-
-.active,
-.active > * {
-    visibility: visible;
-    opacity: 1;
-}
-
-.disabled {
-    @include buttonDisabled;
-}
-
-.reportMood{
-    margin: 0 auto;
-    min-width: 100px;
-    min-height: 10px;
-    display: inline-block;
-}
-
-#mood{
-    position: relative;
-}
-
-#emotion{
-    position: absolute;
-    top: -20px;
-    right: -20px;
-
-    font-size: 26px;
-    transform: rotate(30deg);
+    font-family: $font-header;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 33px;
+    border-radius: 50%;
 }

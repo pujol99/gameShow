@@ -21,3 +21,21 @@ button{
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.center{ @include center;}
+
+.hided {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.6s linear, background-color 0.5s linear;
+}
+
+.active,
+.active > * {
+    visibility: visible;
+    opacity: 1;
+}
+
+.disabled {
+    @include buttonDisabled;
+}

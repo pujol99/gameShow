@@ -1,17 +1,11 @@
 <template>
-    <Renderer ref="renderer" resize="window" orbitCtrl>
-        <PerspectiveCamera :position="{ y:2, z: 3 }"/>
+    <Renderer ref="renderer" resize="window">
+        <PerspectiveCamera :position="{ y: 2, z: 3 }" />
         <Scene ref="scene" background="#000000">
             <AmbientLight :intensity="0.8" />
             <Loader
                 ref="loader"
-                :sceneConfig="{
-                    gltf: {
-                        name: 'room',
-                        update: function (gltf) {},
-                    },
-                    fbx: null
-                }"
+                :sceneConfig="{ gltf: { name: 'room' }}"
             />
         </Scene>
     </Renderer>
@@ -21,11 +15,6 @@
 import { mapGetters } from "vuex";
 import { sRGBEncoding } from "three";
 export default {
-    data() {
-        return {
-            ANIM_TIME: 1.0,
-        };
-    },
     mounted() {
         this.scene = this.$refs.scene;
         this.renderer = this.$refs.renderer;

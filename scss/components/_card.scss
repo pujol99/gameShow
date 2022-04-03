@@ -23,3 +23,9 @@
 .card-title{
     font-family: $font-header;
 }
+
+.card-action{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
