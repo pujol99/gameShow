@@ -1,13 +1,10 @@
 const state = () => ({
-    stages: ["Game"],
+    // Stages: Welcome | Rules | Round (Title | Throw / Choose)
+    currentStage: "Welcome",
     roundTitles: ["Prueba de velocidad"],
-    currentStageIndex: 0,
     roundIndex: 0,
     //
-    rulesReaded: true,
-    roundStarted: false,
-    roundPresented: false,
-    //
+    // 3D Scene
     scene: null,
     renderer: null,
     gltfScene: null,
@@ -15,14 +12,8 @@ const state = () => ({
 
 // getters
 const getters = {
-    isCurrentStage: state => name => {
-        return state.stages[state.currentStageIndex] == name;
-    },
-    isLastStage: state => {
-        return state.currentStageIndex == state.stages.length - 1;
-    },
-    rulesReaded: state => {
-        return state.rulesReaded;
+    getCurrentStage: state => {
+        return state.currentStage;
     },
     getGLTF: state => {
         return state.gltfScene;
@@ -37,34 +28,25 @@ const getters = {
 
 // actions
 const actions = {
-    nextStage({ commit, getters }) {
-        if (!getters.isLastStage) commit("nextStage");
-    },
     addGLTFScene({ commit }, scene) {
         commit("addToScene", scene);
         commit("setGLTFScene", scene);
     },
-    loadingFinish({ commit }) {
-        commit("loadingEnd");
-    },
-    setRulesReaded({ commit }) {
-        commit("setRulesReaded");
-    },
+    setStage({commit}, stage) {
+        commit("setStage", stage);
+    }
 };
 
 // mutations
 const mutations = {
-    nextStage(state) {
-        state.currentStageIndex++;
-    },
     setScene(state, scene) {
         state.scene = scene;
     },
+    setStage(state, stage) {
+        state.currentStage = stage;
+    },
     setRenderer(state, renderer) {
         state.renderer = renderer;
-    },
-    setRulesReaded(state) {
-        state.rulesReaded = true;
     },
     setGLTFScene(state, gltf) {
         state.gltfScene = gltf;
