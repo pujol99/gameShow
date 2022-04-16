@@ -5,6 +5,12 @@
     transform: translate(-50%, -50%);
 }
 
+@mixin footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
 @mixin centerParent {
     position: relative;
     left: 50%;
@@ -19,9 +25,14 @@
     cursor: pointer;
 }
 
+@mixin xcenterParent {
+    position: relative;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, 0);
+}
 @mixin xcenter {
     margin: 0 auto;
-    width: 100%;
 }
 
 @mixin easyInOut($time){
