@@ -51,17 +51,27 @@ export default {
             this.setAllMaterial(gltf, bakedMaterial);
             this.setMaterialIncludes(gltf, "Light", lightMaterial);
 
+            this.setRedPos(gltf.scene.children.filter(child => child.name === "Red")[0].position)
+            this.setBluePos(gltf.scene.children.filter(child => child.name === "Blue")[0].position)
+            this.setYellowPos(gltf.scene.children.filter(child => child.name === "Yellow")[0].position)
+            this.setCenterPos(gltf.scene.children.filter(child => child.name === "Center")[0].position)
+
             this.addScene(gltf.scene);
             this.isLoaded = true;
         });
     },
-    computed: { ...mapGetters({ gltf: "stages/getGLTF" }) },
+    computed: { ...mapGetters({ gltf: "stages/getGLTF", getCameraPos: "data/getCameraPos" }) },
     methods: {
-        ...mapActions({ addScene: "stages/addGLTFScene" }),
+        ...mapActions({
+            addScene: "stages/addGLTFScene",
+            setRedPos: "data/setRedPos",
+            setYellowPos: "data/setYellowPos",
+            setBluePos: "data/setBluePos",
+            setCenterPos: "data/setCenterPos",
+        }),
         update() {
             if (this.isLoaded) {
                 // this.sceneConfig.update(this.gltf);
-
                 // // Update uniforms
                 // const elapsedTime = this.clock.getElapsedTime();
                 // this.screenMaterial.uniforms.uTime.value = elapsedTime;
