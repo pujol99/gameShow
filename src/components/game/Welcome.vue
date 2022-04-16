@@ -1,5 +1,5 @@
 <template>
-    <div v-if="currentScene('Welcome')">
+    <div>
         <div class="card-container">
             <div class="card-title">
                 <h1>{{ getLabel("welcome_title") }}</h1>
@@ -8,7 +8,7 @@
                 <p>{{ getLabel("welcome_body") }}</p>
             </div>
             <div class="card-action">
-                <Continue />
+                <Continue nextStage="Rules"/>
             </div>
         </div>
     </div>
@@ -19,7 +19,6 @@ import { mapGetters } from "vuex";
 export default {
     computed: {
         ...mapGetters({
-            currentScene: "stages/isCurrentStage",
             getLabel: "data/getLabel",
         }),
     },

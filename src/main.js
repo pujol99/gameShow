@@ -7,7 +7,6 @@ import { TroisJSVuePlugin } from "troisjs";
 
 // UI library
 import Continue from "./components/ui/Continue";
-import Accept from "./components/ui/Accept";
 import Option from "./components/ui/Option";
 
 // Utils
@@ -19,12 +18,12 @@ import LoadFBX from "./components/utils/LoadFBX";
 import SceneVisuals from "./components/game/SceneVisuals";
 import Rules from "./components/game/Rules";
 import Title from "./components/game/Title";
+import Welcome from "./components/game/Welcome";
 
 createApp(App)
     .use(store)
     .use(TroisJSVuePlugin)
     .component("Continue", Continue)
-    .component("Accept", Accept)
     .component("Option", Option)
     .component("Loader", Loader)
     .component("LoadGLTF", LoadGLTF)
@@ -32,4 +31,5 @@ createApp(App)
     .component("SceneVisuals", SceneVisuals)
     .component("Rules", Rules)
     .component("Title", Title)
+    .component("Welcome", Welcome)
     .mount("#app");

@@ -1,5 +1,5 @@
 <template>
-    <button class="continueButton" @click="!this.disabled && nextStage()">
+    <button class="continueButton" @click="!this.disabled && setStage(nextStage)">
         {{ getLabel("continue") }}
     </button>
 </template>
@@ -8,6 +8,7 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
     props: {
+        nextStage: String,
         disabled: {
             type: Boolean,
             default: false,
@@ -17,7 +18,7 @@ export default {
         ...mapGetters({ getLabel: "data/getLabel" }),
     },
     methods: {
-        ...mapActions({ nextStage: "stages/nextStage" }),
+        ...mapActions({ setStage: "stages/setStage" }),
     },
 };
 </script>

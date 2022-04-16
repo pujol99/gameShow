@@ -10,6 +10,9 @@
 import { mapGetters } from "vuex";
 export default {
     props: ["title"],
+    mounted() {
+        //gsap to throw
+    },
     computed: {
         ...mapGetters({ getLabel: "data/getLabel", }),
     },
