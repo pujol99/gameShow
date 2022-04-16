@@ -16,6 +16,7 @@ import LoadFBX from "./components/utils/LoadFBX";
 
 // Scenes
 import SceneVisuals from "./components/game/SceneVisuals";
+import SceneUI from "./components/game/SceneUI";
 import Rules from "./components/game/Rules";
 import Title from "./components/game/Title";
 import Welcome from "./components/game/Welcome";
@@ -29,6 +30,7 @@ createApp(App)
     .component("LoadGLTF", LoadGLTF)
     .component("LoadFBX", LoadFBX)
     .component("SceneVisuals", SceneVisuals)
+    .component("SceneUI", SceneUI)
     .component("Rules", Rules)
     .component("Title", Title)
     .component("Welcome", Welcome)

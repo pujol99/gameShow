@@ -41,7 +41,7 @@ export default {
             stage: "stages/getCurrentStage",
             gltf: "stages/getGLTF",
             getCameraPos: "data/getCameraPos",
-            centerPos: "data/getCameraPosCenter",
+            getParticipantPos: "data/getParticipantPos",
         }),
     },
     watch: {
@@ -54,20 +54,20 @@ export default {
     },
     methods: {
         startRound() {
-            const pos = this.getCameraPos;
-            const center = this.centerPos;
+            const participant = this.getParticipantPos;
+            const center = this.getCameraPos("Center");
 
-            const posVector = new Vector3(pos.x, pos.y, pos.z);
+            const participantVector = new Vector3(participant.x, participant.y, participant.z);
             const centerVector = new Vector3(center.x, center.y, center.z);
 
-            const posVectorLookAt = new Vector3(
-                (pos.x + center.x) / 2,
-                (pos.y + center.y) / 2 - 0.3,
-                (pos.z + center.z) / 2
+            const participantPOV = new Vector3(
+                (participant.x + center.x) / 2,
+                (participant.y + center.y) / 2 - 0.3,
+                (participant.z + center.z) / 2
             );
 
-            this.swap(this.cameraPosition, posVector);
-            this.twoSwaps(this.cameraLookAt, centerVector, posVectorLookAt);
+            this.swap(this.cameraPosition, participantVector);
+            this.twoSwaps(this.cameraLookAt, centerVector, participantPOV);
         },
         swap(from, to) {
             gsap.to(from, {

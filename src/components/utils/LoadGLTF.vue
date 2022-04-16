@@ -51,23 +51,21 @@ export default {
             this.setAllMaterial(gltf, bakedMaterial);
             this.setMaterialIncludes(gltf, "Light", lightMaterial);
 
-            this.setRedPos(gltf.scene.children.filter(child => child.name === "Red")[0].position)
-            this.setBluePos(gltf.scene.children.filter(child => child.name === "Blue")[0].position)
-            this.setYellowPos(gltf.scene.children.filter(child => child.name === "Yellow")[0].position)
-            this.setCenterPos(gltf.scene.children.filter(child => child.name === "Center")[0].position)
+            this.setCameraPos({pos: gltf.scene.children.filter(child => child.name === "Red")[0].position, name: "Red"})
+            this.setCameraPos({pos: gltf.scene.children.filter(child => child.name === "Blue")[0].position, name: "Blue"})
+            this.setCameraPos({pos: gltf.scene.children.filter(child => child.name === "Yellow")[0].position, name: "Yellow"})
+            this.setCameraPos({pos: gltf.scene.children.filter(child => child.name === "Center")[0].position, name: "Center"})
+            this.setCameraPos({pos: gltf.scene.children.filter(child => child.name === "Board")[0].position, name: "Board"})
 
             this.addScene(gltf.scene);
             this.isLoaded = true;
         });
     },
-    computed: { ...mapGetters({ gltf: "stages/getGLTF", getCameraPos: "data/getCameraPos" }) },
+    computed: { ...mapGetters({ gltf: "stages/getGLTF"}) },
     methods: {
         ...mapActions({
             addScene: "stages/addGLTFScene",
-            setRedPos: "data/setRedPos",
-            setYellowPos: "data/setYellowPos",
-            setBluePos: "data/setBluePos",
-            setCenterPos: "data/setCenterPos",
+            setCameraPos: "data/setCameraPos",
         }),
         update() {
             if (this.isLoaded) {

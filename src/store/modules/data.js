@@ -5,7 +5,14 @@ const state = () => ({
         ESP: 0,
     },
     language: 0,
-    cameraPositions: [],
+    // 0 Blue 1 Red 2 Yellow 3 Center 4 Board
+    cameraPositions: {
+        "Blue": null,
+        "Red": null,
+        "Yellow": null,
+        "Center": null,
+        "Board": null,
+    },
     turnIndex: 0,
 });
 
@@ -16,11 +23,18 @@ const getters = {
         if (!labels[label]) return "No label";
         return labels[label][state.language];
     },
-    getCameraPos: state => {
-        return state.cameraPositions[state.turnIndex];
+    getParticipantPos: state => {
+        switch (state.turnIndex) {
+            case 0:
+                return state.cameraPositions["Blue"];
+            case 1:
+                return state.cameraPositions["Red"];
+            case 2:
+                return state.cameraPositions["Yellow"];
+        }
     },
-    getCameraPosCenter: state => {
-        return state.cameraPositions[3];
+    getCameraPos: state => posName => {
+        return state.cameraPositions[posName];
     },
 };
 
@@ -29,17 +43,8 @@ const actions = {
     setLanguage({ commit }, language) {
         commit("setLanguage", language);
     },
-    setRedPos({ commit }, pos) {
-        commit("setRedPos", pos);
-    },
-    setYellowPos({ commit }, pos) {
-        commit("setYellowPos", pos);
-    },
-    setBluePos({ commit }, pos) {
-        commit("setBluePos", pos);
-    },
-    setCenterPos({ commit }, pos) {
-        commit("setCenterPos", pos);
+    setCameraPos({ commit }, payload) {
+        commit("setCameraPos", payload);
     },
 };
 
@@ -51,17 +56,8 @@ const mutations = {
     nextTurn(state) {
         state.turnIndex = (state.turnIndex + 1) % 3;
     },
-    setRedPos(state, pos) {
-        state.cameraPositions[1] = pos;
-    },
-    setYellowPos(state, pos) {
-        state.cameraPositions[2] = pos;
-    },
-    setBluePos(state, pos) {
-        state.cameraPositions[0] = pos;
-    },
-    setCenterPos(state, pos) {
-        state.cameraPositions[3] = pos;
+    setCameraPos(state, payload) {
+        state.cameraPositions[payload.name] = payload.pos;
     },
 };
 
