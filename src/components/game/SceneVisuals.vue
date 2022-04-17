@@ -48,45 +48,21 @@ export default {
         stage(newValue, oldValue) {
             console.log(newValue);
             if (newValue === "Throw") {
-                this.startRound();
+                this.setParticipantView("Center")
             }
         },
     },
     methods: {
-        startRound() {
-            const participant = this.getParticipantPos;
-            const center = this.getCameraPos("Center");
-
-            const participantVector = new Vector3(participant.x, participant.y, participant.z);
-            const centerVector = new Vector3(center.x, center.y, center.z);
-
-            const participantPOV = new Vector3(
-                (participant.x + center.x) / 2,
-                (participant.y + center.y) / 2 - 0.3,
-                (participant.z + center.z) / 2
-            );
-
-            this.swap(this.cameraPosition, participantVector);
-            this.twoSwaps(this.cameraLookAt, centerVector, participantPOV);
+        setParticipantView(where){
+            this.swapCameraPos(this.cameraPosition, this.getParticipantPos);
+            this.swapCameraPos(this.cameraLookAt, this.getCameraPos(where));
         },
-        swap(from, to) {
+        swapCameraPos(from, to) {
             gsap.to(from, {
                 duration: this.ANIM_TIME,
                 x: to.x,
                 y: to.y,
                 z: to.z,
-            });
-        },
-        twoSwaps(from, to, nextTo) {
-            var that = this;
-            gsap.to(from, {
-                duration: this.ANIM_TIME,
-                x: to.x,
-                y: to.y,
-                z: to.z,
-                onComplete: function () {
-                    that.swap(from, nextTo);
-                },
             });
         },
     },
