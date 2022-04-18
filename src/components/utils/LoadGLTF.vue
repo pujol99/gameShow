@@ -10,6 +10,7 @@ import {
     ShaderMaterial,
     sRGBEncoding,
     Vector2,
+    Vector3,
     VideoTexture,
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -63,7 +64,7 @@ export default {
                     name: key,
                 });
             }
-            
+
             this.addScene(gltf.scene);
             this.isLoaded = true;
         });
@@ -90,16 +91,6 @@ export default {
                 // this.screenMaterial.uniforms.uTime.value = elapsedTime;
                 // this.monitorMaterial.uniforms.uTime.value = elapsedTime;
             }
-        },
-        setMaterialIncludes(gltf, type, material) {
-            gltf.scene.children
-                .filter(child => child.name.includes(type))
-                .forEach(child => (child.material = material));
-        },
-        setMaterial(gltf, type, material) {
-            gltf.scene.children
-                .filter(child => child.name === type)
-                .forEach(child => (child.material = material));
         },
         setAllMaterial(gltf, material) {
             gltf.scene.traverse(child => {

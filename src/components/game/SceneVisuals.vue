@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { gsap } from "gsap";
 export default {
     data() {
@@ -53,6 +53,7 @@ export default {
         },
     },
     methods: {
+        ...mapActions({ setStage: "stages/setStage" }),
         setParticipantView(where){
             this.swapCameraPos(this.cameraPosition, this.getParticipantPos);
             this.swapCameraPos(this.cameraLookAt, this.getCameraPos(where));
@@ -62,12 +63,14 @@ export default {
             let minDistance = 9999;
             for (const key in this.getPrizesPosObject) {
                 let distance = this.getParticipantPos.distanceTo(this.getPrizesPosObject[key])
+                console.log(distance, key);
                 if(distance < minDistance){
                     minDistance = distance
                     closestPrize = key
                 }
             }
             console.log(closestPrize);
+            this.evaluatePrize(closestPrize);
         },
         swapCameraPos(from, to) {
             gsap.to(from, {
@@ -77,6 +80,22 @@ export default {
                 z: to.z,
             });
         },
+        evaluatePrize(prize){
+            switch (prize) {
+                case "Comodin":
+                    console.log('Comodin');
+                    break;
+                case "Quiebra":
+                    console.log('Quiebra');
+                    break;
+                case "150":
+                    console.log('150');
+                    break;
+                default:
+                    break;
+            }
+            this.setStage("Throw")
+        }
     },
 };
 </script>

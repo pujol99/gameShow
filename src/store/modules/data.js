@@ -13,9 +13,8 @@ const state = () => ({
         Board: null,
     },
     prizesPositions: {
-        "Quiebra": null,
-        "Comodin": null,
-        "150": null,
+        "Ayuda": null,
+        "DobleLetra": null,
     },
     turnIndex: 2,
 });
