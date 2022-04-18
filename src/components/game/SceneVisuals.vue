@@ -6,7 +6,6 @@
             :lookAt="cameraLookAt"
         />
         <Scene ref="scene" background="#000000">
-            <AmbientLight :intensity="0.8" />
             <Loader ref="loader" :sceneConfig="{ gltf: { name: 'room' } }" />
         </Scene>
     </Renderer>
@@ -14,7 +13,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { sRGBEncoding, Vector3 } from "three";
 import { gsap } from "gsap";
 export default {
     data() {
@@ -27,7 +25,6 @@ export default {
     mounted() {
         this.scene = this.$refs.scene;
         this.renderer = this.$refs.renderer;
-        this.renderer.renderer.outputEncoding = sRGBEncoding;
 
         this.$store.commit("stages/setScene", this.scene);
         this.$store.commit("stages/setRenderer", this.renderer);
@@ -42,13 +39,16 @@ export default {
             gltf: "stages/getGLTF",
             getCameraPos: "data/getCameraPos",
             getParticipantPos: "data/getParticipantPos",
+            getPrizesPosObject: "data/getPrizesPosObject",
         }),
     },
     watch: {
         stage(newValue, oldValue) {
-            console.log(newValue);
             if (newValue === "Throw") {
                 this.setParticipantView("Center")
+            }
+            else if (newValue === "Prize") {
+                this.getClosestPrize()
             }
         },
     },
@@ -56,6 +56,18 @@ export default {
         setParticipantView(where){
             this.swapCameraPos(this.cameraPosition, this.getParticipantPos);
             this.swapCameraPos(this.cameraLookAt, this.getCameraPos(where));
+        },
+        getClosestPrize(){
+            let closestPrize = null;
+            let minDistance = 9999;
+            for (const key in this.getPrizesPosObject) {
+                let distance = this.getParticipantPos.distanceTo(this.getPrizesPosObject[key])
+                if(distance < minDistance){
+                    minDistance = distance
+                    closestPrize = key
+                }
+            }
+            console.log(closestPrize);
         },
         swapCameraPos(from, to) {
             gsap.to(from, {

@@ -5,15 +5,19 @@ const state = () => ({
         ESP: 0,
     },
     language: 0,
-    // 0 Blue 1 Red 2 Yellow 3 Center 4 Board
     cameraPositions: {
-        "Blue": null,
-        "Red": null,
-        "Yellow": null,
-        "Center": null,
-        "Board": null,
+        Blue: null,
+        Red: null,
+        Yellow: null,
+        Center: null,
+        Board: null,
     },
-    turnIndex: 0,
+    prizesPositions: {
+        "Quiebra": null,
+        "Comodin": null,
+        "150": null,
+    },
+    turnIndex: 2,
 });
 
 // getters
@@ -36,6 +40,12 @@ const getters = {
     getCameraPos: state => posName => {
         return state.cameraPositions[posName];
     },
+    getCameraPosObject: state => {
+        return state.cameraPositions;
+    },
+    getPrizesPosObject: state => {
+        return state.prizesPositions;
+    },
 };
 
 // actions
@@ -45,6 +55,9 @@ const actions = {
     },
     setCameraPos({ commit }, payload) {
         commit("setCameraPos", payload);
+    },
+    setPrizePos({ commit }, payload) {
+        commit("setPrizePos", payload);
     },
 };
 
@@ -58,6 +71,9 @@ const mutations = {
     },
     setCameraPos(state, payload) {
         state.cameraPositions[payload.name] = payload.pos;
+    },
+    setPrizePos(state, payload) {
+        state.prizesPositions[payload.name] = payload.pos;
     },
 };
 

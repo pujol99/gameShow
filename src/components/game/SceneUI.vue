@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="throw">
-                <div class="throw-content" :class="{ 'throw-content-disabled': stage !== 'Throw' }">
+                <div class="throw-content" :class="{ 'throw-content-disabled': !canThrow }" @click="canThrow && rotateWheel()">
                     <h3>Throw</h3>
                 </div>
             </div>
@@ -33,7 +33,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
+import { gsap } from "gsap";
 export default {
     data() {
         return {
@@ -42,9 +43,27 @@ export default {
     mounted() {
     },
     computed: {
+        canThrow() {
+            return this.stage === 'Throw'
+        },
         ...mapGetters({
             stage: "stages/getCurrentStage",
+            gltf: "stages/getGLTF",
         }),
+    },
+    methods: {
+        ...mapActions({ setStage: "stages/setStage" }),
+        rotateWheel(){
+            let wheel = this.gltf.children.filter(child => child.name === "Wheel")[0]
+            var that = this;
+            gsap.to(wheel.rotation, {
+                duration: 2.0,
+                y: Math.PI,
+                onComplete: function () {
+                    that.setStage("Prize")
+                },
+            });
+        }
     },
 };
 </script>

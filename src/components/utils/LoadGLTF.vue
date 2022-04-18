@@ -38,37 +38,52 @@ export default {
             `./assets/scenes/${this.sceneConfig.name}/baked.jpg`
         );
         bakedTexture.flipY = false;
-        const screenTexture = textureLoader.load("./assets/images/screen.png");
-        screenTexture.flipY = false;
-        const monitorTexture = textureLoader.load("./assets/images/monitor.png");
 
         //Materials
         const bakedMaterial = new MeshBasicMaterial({ map: bakedTexture });
         bakedTexture.encoding = sRGBEncoding;
-        const lightMaterial = new MeshBasicMaterial({ color: 0xffffff });
 
         gltfLoader.load(`./assets/scenes/${this.sceneConfig.name}/scene.glb`, gltf => {
             this.setAllMaterial(gltf, bakedMaterial);
-            this.setMaterialIncludes(gltf, "Light", lightMaterial);
 
-            this.setCameraPos({pos: gltf.scene.children.filter(child => child.name === "Red")[0].position, name: "Red"})
-            this.setCameraPos({pos: gltf.scene.children.filter(child => child.name === "Blue")[0].position, name: "Blue"})
-            this.setCameraPos({pos: gltf.scene.children.filter(child => child.name === "Yellow")[0].position, name: "Yellow"})
-            this.setCameraPos({pos: gltf.scene.children.filter(child => child.name === "Center")[0].position, name: "Center"})
-            this.setCameraPos({pos: gltf.scene.children.filter(child => child.name === "Board")[0].position, name: "Board"})
+            // Retrieve camera positions
+            for (const key in this.getCameraPosObject) {
+                this.setCameraPos({
+                    pos: gltf.scene.children.filter(child => child.name === key)[0]
+                        .position,
+                    name: key,
+                });
+            }
 
+            // Retrieve prizes positions
+            for (const key in this.getPrizesPosObject) {
+                this.setPrizePos({
+                    pos: gltf.scene.children.filter(child => child.name === key)[0]
+                        .position,
+                    name: key,
+                });
+            }
+            
             this.addScene(gltf.scene);
             this.isLoaded = true;
         });
     },
-    computed: { ...mapGetters({ gltf: "stages/getGLTF"}) },
+    computed: {
+        ...mapGetters({
+            gltf: "stages/getGLTF",
+            getCameraPosObject: "data/getCameraPosObject",
+            getPrizesPosObject: "data/getPrizesPosObject",
+        }),
+    },
     methods: {
         ...mapActions({
             addScene: "stages/addGLTFScene",
             setCameraPos: "data/setCameraPos",
+            setPrizePos: "data/setPrizePos",
         }),
         update() {
             if (this.isLoaded) {
+                console.log();
                 // this.sceneConfig.update(this.gltf);
                 // // Update uniforms
                 // const elapsedTime = this.clock.getElapsedTime();

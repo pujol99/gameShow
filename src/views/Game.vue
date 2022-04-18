@@ -1,7 +1,7 @@
 <template>
     <div>
         <SceneVisuals />
-        <SceneUI />
+        <SceneUI v-if="currentStage === 'Throw' || currentStage === 'Choose'"/>
         <Welcome v-if="currentStage === 'Welcome'"/>
         <Rules v-if="currentStage === 'Rules'"/>
         <Title v-if="currentStage === 'Title'" :title="getRoundTitle"/>
