@@ -57,14 +57,14 @@ export default {
             }
 
             // Retrieve prizes positions
-            for (const key in this.getPrizesPosObject) {
-                this.setPrizePos({
-                    pos: gltf.scene.children.filter(child => child.name === key)[0]
-                        .position,
-                    name: key,
-                });
-            }
-
+            gltf.scene.children
+                .filter(child => child.name.includes("_"))
+                .forEach(child =>
+                    this.setPrizePos({
+                        pos: child.position,
+                        name: child.name.substring(1),
+                    })
+                );
             this.addScene(gltf.scene);
             this.isLoaded = true;
         });
@@ -84,7 +84,6 @@ export default {
         }),
         update() {
             if (this.isLoaded) {
-                console.log();
                 // this.sceneConfig.update(this.gltf);
                 // // Update uniforms
                 // const elapsedTime = this.clock.getElapsedTime();

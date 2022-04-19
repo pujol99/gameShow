@@ -2,16 +2,18 @@
     <div class="footer">
         <div class="subfooter">
             <div class="money">
-                <h2>50$</h2>
+                <h2>{{ roundMoney }} $</h2>
             </div>
             <div class="totalMoney">
-                <h5>450$</h5>
+                <h5>{{ totalMoney }} $</h5>
             </div>
         </div>
         <div class="mainFooter">
             <div>
                 <div class="perks">
                     <p>Perks</p>
+                    <p>{{roundPerks}}</p>
+                    <p>{{totalPerks}}</p>
                 </div>
             </div>
             <div class="throw">
@@ -54,6 +56,10 @@ export default {
             gltf: "stages/getGLTF",
             getCameraPos: "data/getCameraPos",
             getPrizesPosObject: "data/getPrizesPosObject",
+            roundMoney: "data/getParticipantMoneyRound",
+            totalMoney: "data/getParticipantMoneyTotal",
+            roundPerks: "data/getParticipantPerksRound",
+            totalPerks: "data/getParticipantPerksTotal",
         }),
     },
     methods: {
@@ -62,14 +68,16 @@ export default {
             if (this.canThrow) {
                 this.rotateWheel(Math.PI * 0.75);
                 let up = new Vector3(0, 1, 0);
-                for (const key in this.getPrizesPosObject) {
-                    this.rotateAboutPoint(
-                        this.gltf.children.filter(child => child.name === key)[0],
-                        this.getCameraPos("Center"),
-                        up,
-                        Math.PI * 0.75
+                this.gltf.children
+                    .filter(child => child.name.includes("_"))
+                    .forEach(child =>
+                        this.rotateAboutPoint(
+                            child,
+                            this.getCameraPos("Center"),
+                            up,
+                            Math.PI * 0.75
+                        )
                     );
-                }
             }
         },
         rotateWheel(angle) {

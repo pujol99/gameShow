@@ -12,11 +12,37 @@ const state = () => ({
         Center: null,
         Board: null,
     },
-    prizesPositions: {
-        "Ayuda": null,
-        "DobleLetra": null,
+    prizesPositions: {},
+    money: {
+        Blue: {
+            total: 0,
+            round: 0,
+        },
+        Yellow: {
+            total: 0,
+            round: 0,
+        },
+        Red: {
+            total: 0,
+            round: 0,
+        },
     },
-    turnIndex: 2,
+    perks: {
+        Blue: {
+            total: [],
+            round: [],
+        },
+        Yellow: {
+            total: [],
+            round: [],
+        },
+        Red: {
+            total: [],
+            round: [],
+        },
+    },
+    turn: "Blue",
+    
 });
 
 // getters
@@ -27,14 +53,19 @@ const getters = {
         return labels[label][state.language];
     },
     getParticipantPos: state => {
-        switch (state.turnIndex) {
-            case 0:
-                return state.cameraPositions["Blue"];
-            case 1:
-                return state.cameraPositions["Red"];
-            case 2:
-                return state.cameraPositions["Yellow"];
-        }
+        return state.cameraPositions[state.turn];
+    },
+    getParticipantMoneyRound: state => {
+        return state.money[state.turn].round;
+    },
+    getParticipantMoneyTotal: state => {
+        return state.money[state.turn].total;
+    },
+    getParticipantPerksRound: state => {
+        return state.perks[state.turn].round;
+    },
+    getParticipantPerksTotal: state => {
+        return state.perks[state.turn].total;
     },
     getCameraPos: state => posName => {
         return state.cameraPositions[posName];
@@ -58,6 +89,9 @@ const actions = {
     setPrizePos({ commit }, payload) {
         commit("setPrizePos", payload);
     },
+    nextTurn({ commit }) {
+        commit("nextTurn");
+    },
 };
 
 // mutations
@@ -65,8 +99,22 @@ const mutations = {
     setLanguage(state, language) {
         state.language = state.languages[language];
     },
+    setMoney(state, amount){
+        state.money[state.turn].round += amount
+    },
+    setPerk(state, perk){
+        state.perks[state.turn].round.push(perk)
+    },
+    loseMoney(state){
+        state.money[state.turn].round = 0
+    },
     nextTurn(state) {
-        state.turnIndex = (state.turnIndex + 1) % 3;
+        if(state.turn === "Blue")
+            state.turn = "Red"
+        else if(state.turn === "Red")
+            state.turn = "Yellow"
+        else
+            state.turn = "Blue"
     },
     setCameraPos(state, payload) {
         state.cameraPositions[payload.name] = payload.pos;

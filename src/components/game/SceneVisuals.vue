@@ -20,6 +20,7 @@ export default {
             cameraPosition: { x: 2, y: 3, z: 0 },
             cameraLookAt: { x: 0, y: 0, z: 0 },
             ANIM_TIME: 1.0,
+            toFixGSAPBug: false
         };
     },
     mounted() {
@@ -53,23 +54,26 @@ export default {
         },
     },
     methods: {
-        ...mapActions({ setStage: "stages/setStage" }),
+        ...mapActions({ setStage: "stages/setStage", nextTurn: "data/nextTurn" }),
         setParticipantView(where){
             this.swapCameraPos(this.cameraPosition, this.getParticipantPos);
-            this.swapCameraPos(this.cameraLookAt, this.getCameraPos(where));
+            var test = this.getCameraPos(where)
+
+            test.y += (this.toFixGSAPBug) ? 0.03 : -0.03
+            this.toFixGSAPBug = !this.toFixGSAPBug
+
+            this.swapCameraPos(this.cameraLookAt, test);
         },
         getClosestPrize(){
             let closestPrize = null;
             let minDistance = 9999;
             for (const key in this.getPrizesPosObject) {
                 let distance = this.getParticipantPos.distanceTo(this.getPrizesPosObject[key])
-                console.log(distance, key);
                 if(distance < minDistance){
                     minDistance = distance
                     closestPrize = key
                 }
             }
-            console.log(closestPrize);
             this.evaluatePrize(closestPrize);
         },
         swapCameraPos(from, to) {
@@ -81,17 +85,18 @@ export default {
             });
         },
         evaluatePrize(prize){
+            console.log(prize);
             switch (prize) {
-                case "Comodin":
-                    console.log('Comodin');
-                    break;
                 case "Quiebra":
-                    console.log('Quiebra');
+                    this.$store.commit("data/loseMoney")
+                    this.nextTurn();
                     break;
-                case "150":
-                    console.log('150');
+                case "DobleLetra":
+                case "Ayuda":
+                    this.$store.commit("data/setPerk", prize)
                     break;
                 default:
+                    this.$store.commit("data/setMoney", parseInt(prize, 10))
                     break;
             }
             this.setStage("Throw")
