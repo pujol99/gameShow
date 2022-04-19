@@ -116,7 +116,9 @@
 }
 
 .money, .totalMoney {
-  width: 100px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   background-color: black;
   color: white;
   border: 3px solid yellow;
