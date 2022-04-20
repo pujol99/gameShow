@@ -2,6 +2,7 @@
     <div>
         <SceneVisuals />
         <SceneUI v-if="currentStage === 'Throw' || currentStage === 'Choose'"/>
+        <Perks v-if="currentStage === 'Perks'"/>
         <Welcome v-if="currentStage === 'Welcome'"/>
         <Rules v-if="currentStage === 'Rules'"/>
         <Title v-if="currentStage === 'Title'" :title="getRoundTitle"/>

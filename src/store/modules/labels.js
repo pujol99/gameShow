@@ -1,5 +1,6 @@
 export const labels = {
     continue: ["Continuar"],
+    close: ["Cerrar"],
     next: ["Siguiente"],
     back: ["Anterior"],
     accept: ["Aceptar"],

@@ -1,6 +1,6 @@
 const state = () => ({
     // Stages: Welcome | Rules | Round (Title | Throw / Choose)
-    currentStage: "Welcome",
+    currentStage: ["Welcome"],
     roundTitles: ["Prueba de velocidad"],
     roundIndex: 0,
     //
@@ -13,7 +13,7 @@ const state = () => ({
 // getters
 const getters = {
     getCurrentStage: state => {
-        return state.currentStage;
+        return state.currentStage[state.currentStage.length - 1];
     },
     getGLTF: state => {
         return state.gltfScene;
@@ -32,9 +32,15 @@ const actions = {
         commit("addToScene", scene);
         commit("setGLTFScene", scene);
     },
-    setStage({commit}, stage) {
+    setStage({ commit }, stage) {
         commit("setStage", stage);
-    }
+    },
+    pushStage({ commit }, stage) {
+        commit("pushStage", stage);
+    },
+    popStage({ commit }) {
+        commit("popStage");
+    },
 };
 
 // mutations
@@ -43,7 +49,13 @@ const mutations = {
         state.scene = scene;
     },
     setStage(state, stage) {
-        state.currentStage = stage;
+        state.currentStage = [stage];
+    },
+    pushStage(state, stage) {
+        state.currentStage.push(stage);
+    },
+    popStage(state) {
+        state.currentStage.pop();
     },
     setRenderer(state, renderer) {
         state.renderer = renderer;

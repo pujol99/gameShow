@@ -10,10 +10,9 @@
         </div>
         <div class="mainFooter">
             <div>
-                <div class="perks">
+                <div class="perks" @click="pushStage('Perks')">
                     <p>Perks</p>
-                    <p>{{roundPerks}}</p>
-                    <p>{{totalPerks}}</p>
+                    <p class="perksLength"> {{roundPerks.length}}</p>
                 </div>
             </div>
             <div class="throw">
@@ -27,11 +26,13 @@
             </div>
             <div>
                 <div class="vowels">
-                    <div class="vowel">A</div>
-                    <div class="vowel">E</div>
-                    <div class="vowel">I</div>
-                    <div class="vowel">O</div>
-                    <div class="vowel">U</div>
+                    <div
+                        class="vowel"
+                        v-for="vowel in ['A', 'E', 'I', 'O', 'U']"
+                        :key="vowel"
+                    >
+                        {{ vowel }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,7 +64,7 @@ export default {
         }),
     },
     methods: {
-        ...mapActions({ setStage: "stages/setStage" }),
+        ...mapActions({ setStage: "stages/setStage", pushStage: "stages/pushStage" }),
         onThrow() {
             if (this.canThrow) {
                 this.rotateWheel(Math.PI * 0.75);
