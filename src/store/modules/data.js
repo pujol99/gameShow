@@ -47,7 +47,7 @@ const state = () => ({
     //14
     //12
     puzzle: [
-        "Golpeo las manos y me froto tobillos y rodillas",
+        "Tarta de pancetas, queso batido y arita",
     ],
     lettersSaid: [""],
     roundTitles: ["Prueba de velocidad"],
