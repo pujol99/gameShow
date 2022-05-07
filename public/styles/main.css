@@ -215,6 +215,29 @@
   cursor: pointer;
 }
 
+.board {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.letter {
+  background-color: aliceblue;
+  color: black;
+  padding: 15px 10px;
+  margin-top: 5px;
+  border-radius: 3px;
+}
+
+.void {
+  background-color: aqua;
+}
+
 * {
   margin: 0;
   padding: 0;

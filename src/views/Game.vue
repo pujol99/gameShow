@@ -5,6 +5,7 @@
         <Perks v-if="currentStage === 'Perks'"/>
         <Welcome v-if="currentStage === 'Welcome'"/>
         <Rules v-if="currentStage === 'Rules'"/>
+        <BoardUI v-if="currentStage === 'Board'"/>
         <Title v-if="currentStage === 'Title'" :title="getRoundTitle"/>
     </div>
 </template>

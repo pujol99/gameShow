@@ -42,7 +42,16 @@ const state = () => ({
         },
     },
     turn: "Blue",
-    
+    //12
+    //14
+    //14
+    //12
+    puzzle: [
+        "Golpeo las manos y me froto tobillos y rodillas",
+    ],
+    lettersSaid: [""],
+    roundTitles: ["Prueba de velocidad"],
+    roundIndex: 0,
 });
 
 // getters
@@ -75,6 +84,22 @@ const getters = {
     },
     getPrizesPosObject: state => {
         return state.prizesPositions;
+    },
+    getRoundTitle: state => {
+        return state.roundTitles[state.roundIndex];
+    },
+    getPuzzle: state => {
+        
+        /*let formattedPuzzle = []
+        let spaces = [12]
+        let prevIterator = 0
+        for(let space in spaces) {
+            let iterator = space + prevIterator;
+            while (puzzle[iterator] !== " ") iterator--;
+            formattedPuzzle.push(puzzle.slice(prevIterator, iterator).toUpperCase())
+            prevIterator = iterator
+        }*/
+        return state.puzzle[state.roundIndex];
     },
 };
 

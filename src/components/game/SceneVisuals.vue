@@ -90,16 +90,18 @@ export default {
                 case "Quiebra":
                     this.$store.commit("data/loseMoney")
                     this.nextTurn();
+                    this.setStage("Throw")
                     break;
                 case "DobleLetra":
                 case "Ayuda":
                     this.$store.commit("data/setPerk", prize)
+                    this.setStage("Board")
                     break;
                 default:
                     this.$store.commit("data/setMoney", parseInt(prize, 10))
+                    this.setStage("Board")
                     break;
             }
-            this.setStage("Throw")
         }
     },
 };

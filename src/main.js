@@ -22,6 +22,7 @@ import Rules from "./components/game/Rules";
 import Title from "./components/game/Title";
 import Welcome from "./components/game/Welcome";
 import Perks from "./components/game/Perks";
+import BoardUI from "./components/game/BoardUI";
 
 createApp(App)
     .use(store)
@@ -38,4 +39,5 @@ createApp(App)
     .component("Title", Title)
     .component("Welcome", Welcome)
     .component("Perks", Perks)
+    .component("BoardUI", BoardUI)
     .mount("#app");

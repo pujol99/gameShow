@@ -1,8 +1,7 @@
 const state = () => ({
     // Stages: Welcome | Rules | Round (Title | Throw / Choose)
-    currentStage: ["Welcome"],
-    roundTitles: ["Prueba de velocidad"],
-    roundIndex: 0,
+    currentStage: ["Board"],
+    
     //
     // 3D Scene
     scene: null,
@@ -20,9 +19,6 @@ const getters = {
     },
     getRenderer: state => {
         return state.renderer;
-    },
-    getRoundTitle: state => {
-        return state.roundTitles[state.roundIndex];
     },
 };
 
