@@ -10,27 +10,19 @@
         </div>
         <div class="mainFooter">
             <div>
-                <div class="perks" @click="pushStage('Perks')">
+                <div class="perks" @click="setUI('Perks')">
                     <p>Perks</p>
-                    <p class="perksLength"> {{roundPerks.length}}</p>
+                    <p class="perksLength">{{ roundPerks.length }}</p>
                 </div>
             </div>
             <div class="throw">
-                <div
-                    class="throw-content"
-                    :class="{ 'throw-content-disabled': !canThrow }"
-                    @click="onThrow"
-                >
+                <div class="throw-content" :class="{ 'throw-content-disabled': !canThrow }" @click="onThrow">
                     <h3>Throw</h3>
                 </div>
             </div>
             <div>
                 <div class="vowels">
-                    <div
-                        class="vowel"
-                        v-for="vowel in ['A', 'E', 'I', 'O', 'U']"
-                        :key="vowel"
-                    >
+                    <div class="vowel" v-for="vowel in ['A', 'E', 'I', 'O', 'U']" :key="vowel">
                         {{ vowel }}
                     </div>
                 </div>
@@ -64,21 +56,14 @@ export default {
         }),
     },
     methods: {
-        ...mapActions({ setStage: "stages/setStage", pushStage: "stages/pushStage" }),
+        ...mapActions({ setStage: "stages/setStage", setUI: "stages/setUI" }),
         onThrow() {
             if (this.canThrow) {
                 this.rotateWheel(Math.PI * 0.75);
                 let up = new Vector3(0, 1, 0);
                 this.gltf.children
                     .filter(child => child.name.includes("_"))
-                    .forEach(child =>
-                        this.rotateAboutPoint(
-                            child,
-                            this.getCameraPos("Center"),
-                            up,
-                            Math.PI * 0.75
-                        )
-                    );
+                    .forEach(child => this.rotateAboutPoint(child, this.getCameraPos("Center"), up, Math.PI * 0.75));
             }
         },
         rotateWheel(angle) {

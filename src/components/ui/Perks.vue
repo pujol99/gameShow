@@ -3,11 +3,11 @@
         <div class="card-container">
             <div class="card-body">
                 <div v-for="perk in roundPerks" :key="perk" class="perk">
-                    {{perk}}
+                    {{ perk }}
                 </div>
             </div>
             <div class="card-action">
-                <Close @click="popStage()"/>
+                <Close @click="removeUI()" />
             </div>
         </div>
     </div>
@@ -20,11 +20,11 @@ export default {
         ...mapGetters({
             getLabel: "data/getLabel",
             roundPerks: "data/getParticipantPerksRound",
-            currentStage: "stages/getCurrentStage"
+            currentStage: "stages/getCurrentStage",
         }),
     },
     methods: {
-        ...mapActions({ popStage: "stages/popStage" })
+        ...mapActions({ removeUI: "stages/removeUI" }),
     },
 };
 </script>

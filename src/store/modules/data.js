@@ -42,12 +42,8 @@ const state = () => ({
         },
     },
     turn: "Blue",
-    //12
-    //14
-    //14
-    //12
     puzzle: [
-        "Tarta de pancetas, queso batido y arita",
+        "Tar*a de pancetas, queso batido y arita",
     ],
     lettersSaid: [""],
     roundTitles: ["Prueba de velocidad"],

@@ -94,22 +94,3 @@
         cursor: pointer;
     }
 }
-
-.board{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.letter{
-    background-color: aliceblue;
-    width: 30px;
-    color: black;
-    padding: 15px 10px;
-    margin-top: 5px;
-    border-radius: 3px;
-}
-
-.void{
-    background-color: aqua;
-}

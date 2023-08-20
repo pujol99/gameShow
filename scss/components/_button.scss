@@ -26,18 +26,3 @@
         color: $buttonFG;
     }
 }
-
-.continueButton{
-    font-size: $large-font;
-    width: 100%;
-    padding: 8px 0px;
-    letter-spacing: 0.4px;
-
-    @include shadow;
-    @include button;
-}
-
-.selected {
-    background: $buttonBG-hover !important;
-    color: $buttonFG-hover !important;
-}

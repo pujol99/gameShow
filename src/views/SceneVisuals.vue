@@ -6,7 +6,7 @@
             :lookAt="cameraLookAt"
         />
         <Scene ref="scene" background="#000000">
-            <Loader ref="loader" :sceneConfig="{ gltf: { name: 'room' } }" />
+            <Loader ref="loader" :sceneConfig="{ gltf: { name: 'plate' } }" />
         </Scene>
     </Renderer>
 </template>

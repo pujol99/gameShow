@@ -9,9 +9,6 @@ import {
     Clock,
     ShaderMaterial,
     sRGBEncoding,
-    Vector2,
-    Vector3,
-    VideoTexture,
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
@@ -36,7 +33,7 @@ export default {
 
         //Textures
         const bakedTexture = textureLoader.load(
-            `./assets/scenes/${this.sceneConfig.name}/baked.jpg`
+            `./assets/gltf/${this.sceneConfig.name}/baked.jpg`
         );
         bakedTexture.flipY = false;
 
@@ -44,7 +41,7 @@ export default {
         const bakedMaterial = new MeshBasicMaterial({ map: bakedTexture });
         bakedTexture.encoding = sRGBEncoding;
 
-        gltfLoader.load(`./assets/scenes/${this.sceneConfig.name}/scene.glb`, gltf => {
+        gltfLoader.load(`./assets/gltf/${this.sceneConfig.name}/scene.glb`, gltf => {
             this.setAllMaterial(gltf, bakedMaterial);
 
             // Retrieve camera positions
